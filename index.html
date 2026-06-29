@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flow Lab Production | Курс Андрея Paysage</title>
+  <meta
+    name="description"
+    content="Flow Lab Production — 10-недельный авторский курс Андрея Paysage по музыкальному продакшену в Ableton Live. От демо и ступора — к собственному звучанию и готовому треку."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f0e8;
+      --bg-soft: #ece6dd;
+      --card: rgba(255, 255, 255, 0.60);
+      --card-strong: rgba(255, 255, 255, 0.82);
+      --text: #16161b;
+      --muted: #5b6271;
+      --muted-soft: #a8adb5;
+      --line: rgba(22, 22, 27, 0.10);
+      --line-strong: rgba(22, 22, 27, 0.16);
+      --accent-lime: #dcff59;
+      --accent-pink: #ef9ddf;
+      --accent-violet: #9b8af0;
+      --accent-peach: #ffc89f;
+      --accent-orange: #ff9c77;
+      --success: #47611a;
+      --danger: #b05f4c;
+      --radius-xl: 30px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --shadow: 0 24px 60px rgba(27, 23, 17, 0.08);
+      --grid-max: 1260px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--text);
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at 14% 10%, rgba(220, 255, 89, 0.26), transparent 20%),
+        radial-gradient(circle at 87% 8%, rgba(155, 138, 240, 0.18), transparent 22%),
+        radial-gradient(circle at 78% 34%, rgba(239, 157, 223, 0.14), transparent 20%),
+        radial-gradient(circle at 12% 56%, rgba(255, 200, 159, 0.18), transparent 18%),
+        radial-gradient(circle at 82% 74%, rgba(220, 255, 89, 0.14), transparent 18%),
+        radial-gradient(circle at 20% 92%, rgba(155, 138, 240, 0.12), transparent 18%),
+        linear-gradient(180deg, #f7f3ed 0%, #f1ece4 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(22, 22, 27, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(22, 22, 27, 0.03) 1px, transparent 1px);
+      background-size: 58px 58px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.50), transparent 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      position: relative;
+      z-index: 1;
+      width: min(calc(100% - 32px), var(--grid-max));
+      margin: 0 auto;
+      padding: 24px 0 92px;
+    }
+
+    .topbar,
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .topbar {
+      padding: 16px 0 38px;
+    }
+
+    .hero,
+    .section {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 28px;
+    }
+
+    .hero {
+      margin-bottom: 34px;
+    }
+
+    .side-label {
+      color: var(--muted-soft);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.8;
+      padding-top: 14px;
+    }
+
+    .section {
+      margin-top: 64px;
+    }
+
+    .hero-main,
+    .section-main {
+      position: relative;
+    }
+
+    .section-main::before,
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 auto;
+      width: 42%;
+      height: 180px;
+      background: radial-gradient(circle at 50% 50%, rgba(239, 157, 223, 0.18), transparent 70%);
+      filter: blur(28px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.75;
+    }
+
+    .section.section--lime .section-main::before {
+      background: radial-gradient(circle at 50% 50%, rgba(220, 255, 89, 0.18), transparent 70%);
+    }
+
+    .section.section--violet .section-main::before {
+      background: radial-gradient(circle at 50% 50%, rgba(155, 138, 240, 0.18), transparent 70%);
+    }
+
+    .section.section--mix .section-main::before {
+      background:
+        radial-gradient(circle at 35% 45%, rgba(220, 255, 89, 0.16), transparent 40%),
+        radial-gradient(circle at 70% 55%, rgba(155, 138, 240, 0.16), transparent 44%);
+    }
+
+    .rule {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 1px;
+      background: var(--line-strong);
+      margin-bottom: 22px;
+    }
+
+    .eyebrow,
+    .section-header .kicker {
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 14px;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+    }
+
+    .hero-main {
+      padding: 28px 0 8px;
+    }
+
+    .hero-title {
+      position: relative;
+      z-index: 2;
+      max-width: 9ch;
+      font-size: clamp(60px, 11vw, 148px);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .hero-title .soft {
+      display: block;
+      color: rgba(22, 22, 27, 0.94);
+    }
+
+    .hero-title .accent {
+      display: block;
+      background: linear-gradient(90deg, var(--text) 0%, var(--text) 14%, #789026 34%, var(--accent-pink) 72%, var(--accent-violet) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-accent {
+      position: absolute;
+      right: 0;
+      top: 26px;
+      width: min(40vw, 460px);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 28%, rgba(220, 255, 89, 0.92), rgba(239, 157, 223, 0.58) 44%, rgba(155, 138, 240, 0.36) 68%, rgba(255, 255, 255, 0) 74%);
+      filter: blur(44px);
+      opacity: 0.9;
+      transform: translate(8%, -8%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: clamp(18px, 2.2vw, 24px);
+      line-height: 1.75;
+    }
+
+    .hero-copy strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .hero-actions,
+    .button-row,
+    .chip-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 24px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition:
+        transform 0.24s ease,
+        box-shadow 0.24s ease,
+        border-color 0.24s ease,
+        background 0.24s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: var(--text);
+      background: linear-gradient(90deg, var(--accent-lime), #f7e7ef 54%, var(--accent-peach));
+      box-shadow: 0 18px 38px rgba(220, 255, 89, 0.2);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.56);
+      border-color: var(--line);
+    }
+
+    .hero-metrics {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 38px;
+    }
+
+    .metric-card,
+    .panel,
+    .decision-card,
+    .trust-card,
+    .program-item,
+    .price-card,
+    .cta-box {
+      position: relative;
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .metric-card {
+      min-height: 138px;
+      padding: 18px;
+      border-radius: var(--radius-md);
+    }
+
+    .metric-label,
+    .mini-label,
+    .status-label,
+    .price-label,
+    .program-number {
+      color: var(--muted-soft);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .metric-value {
+      margin-top: 16px;
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .metric-value span {
+      display: block;
+      margin-top: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.55;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--muted);
+    }
+
+    .section-main {
+      padding-top: 8px;
+    }
+
+    .section-header {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 24px;
+    }
+
+    .section-header h2 {
+      margin-top: 12px;
+      font-size: clamp(44px, 8vw, 108px);
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .section-header p {
+      max-width: 840px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.75;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .panel {
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .panel::before,
+    .decision-card::before,
+    .trust-card::before,
+    .price-card::before,
+    .cta-box::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.44), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 36%);
+      pointer-events: none;
+    }
+
+    .panel-label {
+      position: relative;
+      z-index: 1;
+      color: var(--muted-soft);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .panel h3 {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+      font-size: clamp(30px, 4vw, 46px);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .panel-copy {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .decision-wrap {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .decision-card {
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      overflow: hidden;
+    }
+
+    .decision-card--from {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.58)),
+        radial-gradient(circle at 82% 14%, rgba(255, 156, 119, 0.18), transparent 28%);
+    }
+
+    .decision-card--to {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.62)),
+        radial-gradient(circle at 82% 14%, rgba(220, 255, 89, 0.2), transparent 28%),
+        radial-gradient(circle at 62% 72%, rgba(155, 138, 240, 0.12), transparent 28%);
+    }
+
+    .decision-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .decision-badge {
+      width: 54px;
+      height: 54px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .decision-card--from .decision-badge {
+      background: rgba(255, 156, 119, 0.16);
+      color: var(--danger);
+      border: 1px solid rgba(176, 95, 76, 0.18);
+    }
+
+    .decision-card--to .decision-badge {
+      background: rgba(220, 255, 89, 0.22);
+      color: var(--success);
+      border: 1px solid rgba(71, 97, 26, 0.14);
+    }
+
+    .decision-title {
+      font-size: clamp(26px, 3.2vw, 38px);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      line-height: 0.98;
+    }
+
+    .pill-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(22, 22, 27, 0.06);
+    }
+
+    .pill-icon {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 14px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .decision-card--from .pill-icon {
+      background: rgba(255, 156, 119, 0.16);
+      color: var(--danger);
+    }
+
+    .decision-card--to .pill-icon {
+      background: rgba(220, 255, 89, 0.24);
+      color: var(--success);
+    }
+
+    .pill-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .pill-copy {
+      margin-top: 4px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .mid-cta {
+      position: relative;
+      z-index: 2;
+      margin-top: 18px;
+      padding: 20px 22px;
+      border-radius: 22px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.70), rgba(255, 255, 255, 0.56)),
+        radial-gradient(circle at 16% 40%, rgba(220, 255, 89, 0.18), transparent 26%),
+        radial-gradient(circle at 84% 46%, rgba(239, 157, 223, 0.18), transparent 24%);
+      border: 1px solid rgba(255, 255, 255, 0.76);
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .mid-cta strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+    }
+
+    .mid-cta p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .trust-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 18px;
+    }
+
+    .trust-card {
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .trust-card h3 {
+      position: relative;
+      z-index: 1;
+      margin-top: 12px;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .trust-intro {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    .trust-highlights {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .trust-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.54);
+      border: 1px solid rgba(22, 22, 27, 0.06);
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 8px;
+    }
+
+    .trust-item span {
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .trust-list {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .trust-bullet {
+      padding: 15px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(22, 22, 27, 0.06);
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .trust-bullet strong {
+      color: var(--text);
+    }
+
+    .program-list {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .program-item {
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .program-toggle {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 88px 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 20px 24px;
+      background: transparent;
+      border: 0;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .program-title {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1.04;
+      text-transform: uppercase;
+    }
+
+    .program-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      position: relative;
+      background: rgba(255, 255, 255, 0.42);
+      flex-shrink: 0;
+    }
+
+    .program-icon::before,
+    .program-icon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 16px;
+      height: 1.5px;
+      background: var(--text);
+      transform: translate(-50%, -50%);
+      transition: transform 0.24s ease;
+    }
+
+    .program-icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .program-item.is-open .program-icon::after {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    .program-content {
+      display: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      padding: 0 24px 24px;
+      border-top: 1px solid var(--line);
+    }
+
+    .program-item.is-open .program-content {
+      display: grid;
+    }
+
+    .program-box {
+      padding-top: 18px;
+    }
+
+    .program-box h4 {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .program-box ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .program-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .program-note {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 500;
+    }
+
+    .pricing-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .price-card {
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.70)),
+        radial-gradient(circle at 82% 14%, rgba(239, 157, 223, 0.14), transparent 26%),
+        radial-gradient(circle at 18% 78%, rgba(220, 255, 89, 0.12), transparent 24%);
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      box-shadow: 0 18px 48px rgba(20, 22, 38, 0.10);
+    }
+
+    .price-card--featured {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.72)),
+        radial-gradient(circle at 80% 16%, rgba(220, 255, 89, 0.22), transparent 24%),
+        radial-gradient(circle at 22% 74%, rgba(239, 157, 223, 0.18), transparent 24%);
+      border-color: rgba(255, 255, 255, 0.92);
+      box-shadow: 0 24px 60px rgba(20, 22, 38, 0.14);
+    }
+
+    .price-name {
+      margin-top: 14px;
+      font-size: clamp(38px, 4.9vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      line-height: 0.94;
+      text-transform: uppercase;
+      color: #16161b;
+      text-shadow: none;
+    }
+
+    .price-subtitle {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .price-list {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .price-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: start;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(22, 22, 27, 0.14);
+      box-shadow: 0 10px 26px rgba(20, 22, 38, 0.08);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    .price-item span:last-child {
+      color: #2f3440;
+      font-weight: 600;
+    }
+
+    .price-item--off {
+      opacity: 0.56;
+      filter: saturate(0.6);
+    }
+
+    .price-item--off span:last-child {
+      color: #616775;
+      font-weight: 500;
+    }
+
+    .status-dot {
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 13px;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .status-dot--on {
+      background: rgba(220, 255, 89, 0.26);
+      color: var(--success);
+    }
+
+    .status-dot--off {
+      background: rgba(255, 156, 119, 0.18);
+      color: var(--danger);
+    }
+
+    .price-result {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background:
+        linear-gradient(90deg, rgba(220, 255, 89, 0.18), rgba(239, 157, 223, 0.14));
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .price-result strong {
+      color: var(--text);
+    }
+
+    .cta-box {
+      position: relative;
+      z-index: 2;
+      margin-top: 28px;
+      border-radius: calc(var(--radius-xl) + 2px);
+      padding: 30px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.68)),
+        radial-gradient(circle at 86% 20%, rgba(155, 138, 240, 0.18), transparent 20%),
+        radial-gradient(circle at 14% 80%, rgba(220, 255, 89, 0.18), transparent 16%);
+    }
+
+    .cta-box h3 {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(34px, 5vw, 62px);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .cta-box p {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+    }
+
+    .chip-row {
+      margin-top: 22px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(22, 22, 27, 0.08);
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+    }
+
+    .footer {
+      margin-top: 58px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1120px) {
+      .hero,
+      .section,
+      .decision-wrap,
+      .trust-grid,
+      .hero-metrics,
+      .grid-2,
+      .pricing-grid,
+      .program-content,
+      .trust-highlights {
+        grid-template-columns: 1fr;
+      }
+
+      .side-label {
+        padding-top: 0;
+      }
+
+      .hero-accent {
+        width: 320px;
+      }
+
+      .mid-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page-shell {
+        width: min(calc(100% - 20px), var(--grid-max));
+        padding-bottom: 72px;
+      }
+
+      .topbar,
+      .footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-title {
+        font-size: clamp(52px, 18vw, 88px);
+      }
+
+      .program-toggle {
+        grid-template-columns: 66px 1fr auto;
+        padding: 18px;
+      }
+
+      .program-title {
+        font-size: 24px;
+      }
+
+      .panel,
+      .decision-card,
+      .trust-card,
+      .price-card,
+      .cta-box {
+        padding: 22px;
+      }
+
+      .hero-actions,
+      .button-row {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar fade-in">
+      <span>Flow Lab | Music School</span>
+      <span>Paysage · первый запуск production-курса</span>
+    </header>
+
+    <section class="hero fade-in" id="top">
+      <div class="side-label">
+        Flow Lab<br>
+        Production<br>
+        Андрей Paysage<br>
+        Старт 20 июля
+      </div>
+
+      <div class="hero-main">
+        <div class="rule"></div>
+        <div class="eyebrow">Авторский курс Андрея Paysage</div>
+        <div class="hero-accent" aria-hidden="true"></div>
+        <h1 class="hero-title">
+          <span class="soft">Flow</span>
+          <span class="accent">Lab</span>
+        </h1>
+        <p class="hero-copy">
+          <strong>Если ты застрял между сильным вкусом и слабыми демками,</strong>
+          теряешься в плагинах, не доводишь идеи до релизного состояния, сомневаешься
+          в своем звучании и каждый раз откладываешь следующий проект —
+          <strong>Flow Lab Production Андрея Paysage</strong> поможет пройти путь
+          от хаоса и ступора к собственному треку, который держит энергию,
+          работает на танцполе и не стыдно отправить дальше.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Хочу трек</a>
+          <a class="btn btn-secondary" href="#program">Программа курса</a>
+          <a class="btn btn-secondary" href="#pricing">Тарифы</a>
+        </div>
+
+        <div class="hero-metrics">
+          <article class="metric-card">
+            <div class="metric-label">Старт</div>
+            <div class="metric-value">20 июля<span>Первый запуск курса в новом потоке Flow Lab Production.</span></div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-label">Длительность</div>
+            <div class="metric-value">2,5 месяца<span>10 недель, чтобы пройти путь глубоко и без спешки.</span></div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-label">Структура</div>
+            <div class="metric-value">10 модулей<span>От среды и ударных до сведения, финализации и релизной готовности.</span></div>
+          </article>
+          <article class="metric-card">
+            <div class="metric-label">Итог</div>
+            <div class="metric-value">Готовый трек<span>В любом тарифе ты приходишь к финальному музыкальному результату.</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--mix fade-in">
+      <div class="side-label">
+        Точка A<br>
+        /<br>
+        Точка B
+      </div>
+
+      <div class="section-main">
+        <div class="rule"></div>
+        <div class="section-header">
+          <div class="kicker">С чем приходят и куда идут</div>
+          <h2>Точка A и точка B</h2>
+          <p>
+            Здесь не про абстрактное “научиться кнопкам”. Курс Андрея Paysage
+            помогает перейти от музыкальной неуверенности и недоделанных демок
+            к состоянию, где ты понимаешь, как трек работает на уровне эмоции,
+            энергии, пространства и танцпола.
+          </p>
+        </div>
+
+        <div class="decision-wrap">
+          <article class="decision-card decision-card--from">
+            <div class="decision-head">
+              <span class="decision-badge">A</span>
+              <div>
+                <div class="status-label">Сейчас</div>
+                <div class="decision-title">Приходят с болью</div>
+              </div>
+            </div>
+            <div class="pill-grid">
+              <div class="pill">
+                <span class="pill-icon">×</span>
+                <div>
+                  <div class="pill-title">Нет уверенности в своем звучании</div>
+                  <div class="pill-copy">Музыка кажется недостаточно сильной, а чужие треки только усиливают сравнение и внутренний зажим.</div>
+                </div>
+              </div>
+              <div class="pill">
+                <span class="pill-icon">×</span>
+                <div>
+                  <div class="pill-title">Слишком много решений и хаоса</div>
+                  <div class="pill-copy">Плагины, библиотеки, референсы, приемы — а системного понимания, что именно делать дальше, нет.</div>
+                </div>
+              </div>
+              <div class="pill">
+                <span class="pill-icon">×</span>
+                <div>
+                  <div class="pill-title">Демки не превращаются в треки</div>
+                  <div class="pill-copy">Идея стартует ярко, но разваливается на аранжировке, груве, миксе или просто замирает в папке drafts.</div>
+                </div>
+              </div>
+              <div class="pill">
+                <span class="pill-icon">×</span>
+                <div>
+                  <div class="pill-title">Есть страх оценки и сцены</div>
+                  <div class="pill-copy">Не хватает внутренней устойчивости, чтобы показать материал, отправить его на лейбл и говорить с индустрией на одном языке.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="decision-card decision-card--to">
+            <div class="decision-head">
+              <span class="decision-badge">B</span>
+              <div>
+                <div class="status-label">После курса</div>
+                <div class="decision-title">Уходят с результатом</div>
+              </div>
+            </div>
+            <div class="pill-grid">
+              <div class="pill">
+                <span class="pill-icon">✓</span>
+                <div>
+                  <div class="pill-title">Лучше чувствуют музыку и ее энергию</div>
+                  <div class="pill-copy">Понимают, как строить трек, управлять напряжением и удерживать внимание слушателя на протяжении всей формы.</div>
+                </div>
+              </div>
+              <div class="pill">
+                <span class="pill-icon">✓</span>
+                <div>
+                  <div class="pill-title">Быстрее принимают решения в продакшне</div>
+                  <div class="pill-copy">Не тонут в вариантах, а собирают рабочий материал точнее, осознаннее и с более ясным авторским почерком.</div>
+                </div>
+              </div>
+              <div class="pill">
+                <span class="pill-icon">✓</span>
+                <div>
+                  <div class="pill-title">Доводят трек до финальной версии</div>
+                  <div class="pill-copy">В конце потока у каждого тарифа есть конкретный итог — собственный законченный трек, а не очередная попытка.</div>
+                </div>
+              </div>
+              <div class="pill">
+                <span class="pill-icon">✓</span>
+                <div>
+                  <div class="pill-title">Понимают следующий шаг как артист</div>
+                  <div class="pill-copy">Могут отправить музыку на лейбл, двигаться в сторону выступлений и увереннее занимать свое место в сцене.</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="mid-cta">
+          <div>
+            <strong>Хочешь понять, подойдет ли тебе этот путь?</strong>
+            <p>Напиши нам в Telegram — разберем, где ты сейчас, и какой формат курса будет для тебя самым рабочим.</p>
+          </div>
+          <a class="btn btn-primary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Связаться с нами</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--lime fade-in">
+      <div class="side-label">
+        Почему<br>
+        Paysage<br>
+        / trust
+      </div>
+
+      <div class="section-main">
+        <div class="rule"></div>
+        <div class="section-header">
+          <div class="kicker">Аргументы доверия</div>
+          <h2>Опыт Андрея Paysage</h2>
+          <p>
+            Сильная сторона курса — не только техника, а прожитый артистический путь.
+            Андрей Paysage объясняет музыкальный продакшн изнутри сцены: через
+            вкус, наслушанность, психологию восприятия и реальные решения,
+            которые работают в треке и на танцполе. При этом курс подходит и
+            для начинающих: базу, логику и рабочие процессы мы выстраиваем с нуля.
+          </p>
+        </div>
+
+        <div class="trust-grid">
+          <article class="trust-card">
+            <div class="mini-label">Опыт и сцена</div>
+            <h3>Путь, а не только теория</h3>
+            <div class="trust-intro">
+              Андрей Paysage — музыкант и продюсер с реальным артистическим бэкграундом:
+              от пути самоучки и игнора демок до чартов, фестивалей, международных
+              выступлений и собственного лейбла.
+            </div>
+
+            <div class="trust-highlights">
+              <div class="trust-item">
+                <strong>15 лет</strong>
+                <span>в музыке, без классического музыкального образования, через путь самоучки и практики.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Paysage</strong>
+                <span>авторский почерк, основанный на вкусе, наслушанности и понимании танцпола.</span>
+              </div>
+              <div class="trust-item">
+                <strong>Hypnotica</strong>
+                <span>резидентство и работа в контексте живой сцены, а не учебной симуляции.</span>
+              </div>
+              <div class="trust-item">
+                <strong>HighWayRecords</strong>
+                <span>связь с реальной индустрией и опытом продвижения материала дальше.</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="trust-card">
+            <div class="mini-label">Что важно знать</div>
+            <div class="trust-list">
+              <div class="trust-bullet"><strong>StereoVision.</strong> Собственный лейбл и понимание того, что делает трек убедительным не только в студии, но и в индустриальном контексте.</div>
+              <div class="trust-bullet"><strong>Живой путь артиста.</strong> Не “учебниковая” схема, а собранный по шагам опыт: ошибки, поиск своего звучания, рост, сцена и понимание, как двигаться дальше без готовой дорожной карты.</div>
+              <div class="trust-bullet"><strong>Фестивали и международные выступления.</strong> Butterfly, Trip, выступления в Таиланде, Индии и в других странах — музыка проверена не только в проекте, но и на публике.</div>
+              <div class="trust-bullet"><strong>Сильная сторона Paysage.</strong> Умение слышать, какой звук держит трек, какая бочка пробивает, какой бас работает и как балансировать сердце и голову внутри материала.</div>
+              <div class="trust-bullet"><strong>Разбор на языке сцены.</strong> Здесь учат не только кнопкам, а музыкальному мышлению, драматургии, вкусу и прикладной логике создания танцевальной музыки.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--violet fade-in" id="program">
+      <div class="side-label">
+        Авторская<br>
+        программа<br>
+        10 модулей
+      </div>
+
+      <div class="section-main">
+        <div class="rule"></div>
+        <div class="section-header">
+          <div class="kicker">Авторская программа</div>
+          <h2>Программа курса</h2>
+          <p>
+            За 10 недель ты проходишь весь путь от среды и ритма до сведения,
+            финализации и релизной готовности. В центре — не механическое повторение,
+            а способность читать, считать и чувствовать музыку так, как это делает
+            артист и продюсер Андрей Paysage.
+          </p>
+        </div>
+
+        <div class="program-list">
+          <article class="program-item is-open">
+            <button class="program-toggle" type="button" aria-expanded="true">
+              <span class="program-number">Модуль 01</span>
+              <span class="program-title">Среда, логика проекта и скорость работы
+                <span class="program-note">Ableton Live без хаоса и лишнего сопротивления</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>Навигация по DAW и понятная структура проекта</li>
+                  <li>Browser, клипы, шаблоны, горячие клавиши</li>
+                  <li>Рабочая среда, которая не тормозит идею</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>Ты не тратишь энергию на борьбу с интерфейсом и быстрее переходишь к самой музыке.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="program-item">
+            <button class="program-toggle" type="button" aria-expanded="false">
+              <span class="program-number">Модуль 02</span>
+              <span class="program-title">Ударные I: кик, клэп, хэты и каркас грува
+                <span class="program-note">Собираем опору трека, на которой держится движение</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>Как собрать рабочую основу ударных без лишнего шума</li>
+                  <li>Роль кика, клэпа и хэтов в ощущении пульса</li>
+                  <li>Первичный баланс и плотность ритм-секции</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>Появляется сильный ритмический каркас, на котором уже можно строить полноценный трек.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="program-item">
+            <button class="program-toggle" type="button" aria-expanded="false">
+              <span class="program-number">Модуль 03</span>
+              <span class="program-title">Ударные II: перкуссия, детали и живой пульс
+                <span class="program-note">Добавляем характер, телесность и движение</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>Дополнительные слои и ритмические акценты</li>
+                  <li>Грув, микро-смещения и живость ритма</li>
+                  <li>Как не перегрузить трек и оставить пространство</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>Ритм перестает быть механическим и начинает работать как тело трека.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="program-item">
+            <button class="program-toggle" type="button" aria-expanded="false">
+              <span class="program-number">Модуль 04</span>
+              <span class="program-title">MIDI, бас и гармоническая опора
+                <span class="program-note">Связываем ритм, ноты и настроение в одну систему</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>MIDI как рабочий инструмент, а не абстракция</li>
+                  <li>Басовые партии и их связь с ритмом и киком</li>
+                  <li>Гармония, которая удерживает атмосферу трека</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>Музыкальный материал начинает дышать, а не распадаться на отдельные элементы.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="program-item">
+            <button class="program-toggle" type="button" aria-expanded="false">
+              <span class="program-number">Модуль 05</span>
+              <span class="program-title">Базовая звукорежиссура и чистота микса
+                <span class="program-note">Учим трек звучать собранно и читаемо</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>EQ, компрессия, насыщение и контроль уровня</li>
+                  <li>Частотные конфликты и освобождение пространства</li>
+                  <li>Плотность без грязи, перегруза и случайных решений</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>Ты начинаешь слышать, что именно ломает микс, и умеешь это чинить осознанно.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="program-item">
+            <button class="program-toggle" type="button" aria-expanded="false">
+              <span class="program-number">Модуль 06</span>
+              <span class="program-title">Пространство, атмосфера и глубина
+                <span class="program-note">Делаем звук объемным и эмоционально убедительным</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>Reverb, delay и return-логика в продакшне</li>
+                  <li>Как создавать объем, не размывая центр трека</li>
+                  <li>Текстуры, воздух и эмоциональная среда композиции</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>Трек начинает звучать не только технично, но и атмосферно, с характером и глубиной.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="program-item">
+            <button class="program-toggle" type="button" aria-expanded="false">
+              <span class="program-number">Модуль 07</span>
+              <span class="program-title">Аранжировка I: чтение трека и расстановка пространства
+                <span class="program-note">Понимаем архитектуру сильного трека и собираем собственную форму</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>Чтение трека по контрольному прослушиванию и расстановка маркеров</li>
+                  <li>Расстановка звуков и инструментов в пространстве, чтобы у каждого элемента было свое место</li>
+                  <li>Создание переходов и оттяжек, которые мягко и уверенно переводят слушателя между секциями</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>Ты начинаешь видеть трек как конструкцию: понимаешь, где опора, где пауза, где воздух и как удерживать целостность формы.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="program-item">
+            <button class="program-toggle" type="button" aria-expanded="false">
+              <span class="program-number">Модуль 08</span>
+              <span class="program-title">Аранжировка II: драматургия, напряжение и танцпол
+                <span class="program-note">Учимся управлять вниманием и физическим откликом слушателя</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>Как распределять напряжение по всему треку, чтобы энергия не провисала раньше времени</li>
+                  <li>Использование приемов драматургии: ожидание, разрядка, удержание, смещение фокуса</li>
+                  <li>Влияние звуков на танцпол: какие решения работают телесно, а какие оставляют трек только “умным”</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>У трека появляется маршрут, за которым интересно идти, и внутренняя логика, которая ощущается не только головой, но и телом.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="program-item">
+            <button class="program-toggle" type="button" aria-expanded="false">
+              <span class="program-number">Модуль 09</span>
+              <span class="program-title">Сведение и подготовка к релизу
+                <span class="program-note">Делаем трек устойчивым на разных системах и в индустриальном контексте</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>Баланс громкостей, группы, sidechain и панорама</li>
+                  <li>Контрольные прослушивания и частотные конфликты</li>
+                  <li>Подготовка материала к отправке дальше</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>Ты слышишь микс как систему и умеешь довести его до состояния, с которым не стыдно идти к лейблам и в релиз.</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="program-item">
+            <button class="program-toggle" type="button" aria-expanded="false">
+              <span class="program-number">Модуль 10</span>
+              <span class="program-title">Финализация, мастер-подготовка и экспорт
+                <span class="program-note">Последний этап без слива энергии и бесконечных правок</span>
+              </span>
+              <span class="program-icon" aria-hidden="true"></span>
+            </button>
+            <div class="program-content">
+              <div class="program-box">
+                <h4>Внутри модуля</h4>
+                <ul>
+                  <li>Glue, limiter, headroom и финальный контроль</li>
+                  <li>Подготовка версий, экспорт и проверка перед отправкой</li>
+                  <li>Как завершать трек без застревания на последнем шаге</li>
+                </ul>
+              </div>
+              <div class="program-box">
+                <h4>Результат</h4>
+                <p>Появляется понятный финальный workflow, который превращает почти готовый материал в готовый трек.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--mix fade-in" id="pricing">
+      <div class="side-label">
+        Три уровня<br>
+        глубины<br>
+        сопровождения
+      </div>
+
+      <div class="section-main">
+        <div class="rule"></div>
+        <div class="section-header">
+          <div class="kicker">Участие в потоке</div>
+          <h2>Тарифы</h2>
+          <p>
+            Во всех тарифах ты проходишь полную программу и приходишь к одному результату:
+            <strong>готовому треку.</strong> Разница — в глубине сопровождения, количестве
+            разборов и том, сколько личного внимания ты получаешь на пути.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="price-label">Flow Lab Production</div>
+            <div class="price-name">Base</div>
+            <div class="price-subtitle">Для тех, кто хочет пройти весь курс, встроиться в поток и самостоятельно довести материал до готового состояния.</div>
+            <ul class="price-list">
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>10 модулей курса</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Доступ к материалам в записи (1,5 месяца)</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Домашние задания и общий чат</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Возможность зарабатывать бонусы за прохождение курса</span></li>
+              <li class="price-item price-item--off"><span class="status-dot status-dot--off">×</span><span>10 мастермайндов с живыми групповыми разборами</span></li>
+              <li class="price-item price-item--off"><span class="status-dot status-dot--off">×</span><span>Обратная связь по домашкам</span></li>
+              <li class="price-item price-item--off"><span class="status-dot status-dot--off">×</span><span>Совместная работа над треком в ходе курса</span></li>
+              <li class="price-item price-item--off"><span class="status-dot status-dot--off">×</span><span>Индивидуальное сопровождение от Андрея</span></li>
+              <li class="price-item price-item--off"><span class="status-dot status-dot--off">×</span><span>3 мастермайнда по продюссированию</span></li>
+              <li class="price-item price-item--off"><span class="status-dot status-dot--off">×</span><span>Выпуск трека под лейблом FLOWLAB RECORDS</span></li>
+            </ul>
+            <div class="price-result"><strong>Результат:</strong> у тебя есть готовый трек и более понятный путь как у артиста.</div>
+            <div class="button-row">
+              <a class="btn btn-secondary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Узнать цену</a>
+            </div>
+          </article>
+
+          <article class="price-card price-card--featured">
+            <div class="price-label">Flow Lab Production</div>
+            <div class="price-name">Studio</div>
+            <div class="price-subtitle">Для тех, кому важен более плотный ритм потока, живая групповая динамика и регулярные разборы материала.</div>
+            <ul class="price-list">
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>10 модулей курса</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Доступ к материалам в записи (3 месяца)</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Домашние задания и общий чат</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Возможность зарабатывать бонусы за прохождение курса</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>10 мастермайндов с живыми групповыми разборами</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Обратная связь по домашкам</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Совместная работа над треком в ходе курса</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Возможность попасть в лейбл FLOWLAB RECORDS</span></li>
+              <li class="price-item price-item--off"><span class="status-dot status-dot--off">×</span><span>Индивидуальное сопровождение от Андрея</span></li>
+              <li class="price-item price-item--off"><span class="status-dot status-dot--off">×</span><span>3 мастермайнда по продюссированию</span></li>
+              <li class="price-item price-item--off"><span class="status-dot status-dot--off">×</span><span>Выпуск трека под лейблом FLOWLAB RECORDS</span></li>
+            </ul>
+            <div class="price-result"><strong>Результат:</strong> ты выходишь из потока с готовым треком, а также получаешь больше разборов и внешнего темпа.</div>
+            <div class="button-row">
+              <a class="btn btn-primary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Узнать цену</a>
+            </div>
+          </article>
+
+          <article class="price-card">
+            <div class="price-label">Flow Lab Production</div>
+            <div class="price-name">Mentor</div>
+            <div class="price-subtitle">Для тех, кто хочет не просто пройти курс, а работать в максимально плотном формате вместе с Андреем Paysage и довести трек до самого сильного результата.</div>
+            <ul class="price-list">
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>10 модулей курса</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Доступ к материалам в записи (6 месяцев)</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Домашние задания и общий чат</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Возможность зарабатывать бонусы за прохождение курса</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>10 мастермайндов с живыми групповыми разборами</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Обратная связь по домашкам</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Совместная работа над треком в ходе курса</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Индивидуальное сопровождение от Андрея</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>3 мастермайнда по продюссированию</span></li>
+              <li class="price-item"><span class="status-dot status-dot--on">✓</span><span>Выпуск трека под лейблом FLOWLAB RECORDS</span></li>
+            </ul>
+            <div class="price-result"><strong>Результат:</strong> готовый трек, а также максимальная глубина сопровождения и шанс довести материал до выпуска под лейблом.</div>
+            <div class="button-row">
+              <a class="btn btn-secondary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Узнать цену</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="cta-box" id="apply">
+          <h3>Хочешь понять, какой формат твой?</h3>
+          <p>
+            Напиши нам в Telegram: расскажи, в какой DAW ты работаешь, какой у тебя
+            сейчас уровень и что хочешь получить за эти 10 недель. Мы поможем быстро
+            понять, какой тариф даст тебе лучший результат без лишней перегрузки.
+          </p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Узнать больше</a>
+            <a class="btn btn-secondary" href="#top">К началу страницы</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer fade-in">
+      <span>Flow Lab | Music School</span>
+      <span>Production course by Andrey Paysage · старт 20 июля</span>
+    </footer>
+  </main>
+
+  <script>
+    const fadeInElements = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+        }
+      });
+    }, { threshold: 0.12 });
+
+    fadeInElements.forEach((element) => observer.observe(element));
+    fadeInElements.forEach((element) => element.classList.add("is-visible"));
+
+    const programItems = document.querySelectorAll(".program-item");
+    programItems.forEach((item) => {
+      const button = item.querySelector(".program-toggle");
+      button.addEventListener("click", () => {
+        const isOpen = item.classList.contains("is-open");
+
+        programItems.forEach((otherItem) => {
+          otherItem.classList.remove("is-open");
+          const otherButton = otherItem.querySelector(".program-toggle");
+          if (otherButton) {
+            otherButton.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        if (!isOpen) {
+          item.classList.add("is-open");
+          button.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
