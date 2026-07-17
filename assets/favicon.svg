@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>Flow Lab favicon</title>
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#dcff59"/>
+      <stop offset="52%" stop-color="#ef9ddf"/>
+      <stop offset="100%" stop-color="#ffc89f"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8ef" stop-opacity="0.72"/>
+      <stop offset="100%" stop-color="#fff8ef" stop-opacity="0.18"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#bg)"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="16.5" fill="url(#glow)" opacity="0.32"/>
+  <text
+    x="32"
+    y="40"
+    text-anchor="middle"
+    fill="#2f2934"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="30"
+    font-style="italic"
+    font-weight="400"
+    letter-spacing="-2.2"
+  >fl</text>
+</svg>
