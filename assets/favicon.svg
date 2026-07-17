@@ -2,26 +2,26 @@
   <title>Flow Lab favicon</title>
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#dcff59"/>
-      <stop offset="52%" stop-color="#ef9ddf"/>
-      <stop offset="100%" stop-color="#ffc89f"/>
+      <stop offset="0%" stop-color="#d8ff3f"/>
+      <stop offset="44%" stop-color="#f6ff8a"/>
+      <stop offset="76%" stop-color="#ff95da"/>
+      <stop offset="100%" stop-color="#ff78c8"/>
     </linearGradient>
     <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fff8ef" stop-opacity="0.72"/>
-      <stop offset="100%" stop-color="#fff8ef" stop-opacity="0.18"/>
+      <stop offset="0%" stop-color="#fffdf4" stop-opacity="0.54"/>
+      <stop offset="100%" stop-color="#fff7ef" stop-opacity="0.14"/>
     </linearGradient>
   </defs>
   <rect width="64" height="64" rx="18" fill="url(#bg)"/>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="16.5" fill="url(#glow)" opacity="0.32"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="16.5" fill="url(#glow)" opacity="0.36"/>
   <text
     x="32"
-    y="40"
+    y="41"
     text-anchor="middle"
-    fill="#2f2934"
-    font-family="Georgia, 'Times New Roman', serif"
-    font-size="30"
-    font-style="italic"
-    font-weight="400"
-    letter-spacing="-2.2"
-  >fl</text>
+    fill="#1f1d26"
+    font-family="'Helvetica Neue', Arial, sans-serif"
+    font-size="24"
+    font-weight="700"
+    letter-spacing="0.8"
+  >FL</text>
 </svg>
