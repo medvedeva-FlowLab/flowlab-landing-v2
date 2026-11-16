@@ -1888,12 +1888,233 @@
       }
     }
   </style>
+  <style>
+:root {
+  --jungle: #0f2a1d;
+  --palm: #2e6b3f;
+  --sage: #8fb08a;
+  --mango: #f28c28;
+  --sand: #efe7d6;
+  --paper: #f8f3e8;
+  --text: var(--jungle);
+  --muted: #465749;
+  --muted-soft: #526452;
+  --line: #0f2a1d30;
+  --line-strong: #0f2a1d50;
+  --success: #285837;
+  --danger: #8a4128;
+  --radius-xl: 14px;
+  --grid-max: 1380px;
+}
+
+body { background: var(--sand); color: var(--text); }
+body::before, .section-main::before, .hero-main::before { display: none; }
+.page-shell { width: 100%; padding: 0; }
+.topbar, .hero, .section, .footer {
+  padding-inline: max(clamp(16px, 5.5vw, 82px), calc((100% - var(--grid-max)) / 2 + 82px));
+}
+.topbar, .hero, #program, .footer {
+  --text: var(--paper);
+  --muted: #d4dfca;
+  --muted-soft: #b1c5a9;
+  --line: #efe7d63a;
+  --line-strong: #efe7d64d;
+  background: var(--jungle);
+  color: var(--text);
+}
+.topbar { padding-block: 22px; }
+.wordmark {
+  display: inline-block;
+  white-space: nowrap;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  text-transform: none;
+  letter-spacing: -.085em;
+  line-height: .9;
+}
+.topbar .wordmark { font-size: 34px; }
+.wordmark i { color: var(--mango); font-family: Georgia, serif; font-weight: 400; }
+.wordmark sup { color: var(--mango); font-size: .16em; vertical-align: baseline; margin-left: .4em; }
+.site-nav { display: flex; flex-wrap: wrap; gap: 12px clamp(14px, 3vw, 42px); }
+.site-nav a:hover { color: var(--mango); }
+.hero, .section { grid-template-columns: minmax(100px, .16fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 64px); }
+.hero {
+  isolation: isolate;
+  overflow: hidden;
+  margin-bottom: 0;
+  padding-block: 28px clamp(42px, 7vw, 100px);
+  background: radial-gradient(ellipse at 77% 27%, #2e6b3f99, transparent 52%), var(--jungle);
+}
+.hero-main { min-width: 0; padding-top: 0; }
+.hero .rule { margin-bottom: clamp(26px, 5vw, 72px); }
+.hero .eyebrow { color: var(--sage); }
+.hero-title { max-width: none; font-size: clamp(62px, 12vw, 184px); line-height: .96; }
+.hero-edition {
+  display: block;
+  margin-top: 20px;
+  font: 400 clamp(27px, 5vw, 64px)/1 "Suisse Intl", "Manrope", sans-serif;
+  letter-spacing: -.045em;
+  text-transform: none;
+}
+.hero-copy { max-width: 690px; font-size: clamp(16px, 1.55vw, 22px); line-height: 1.65; }
+.hero-accent {
+  top: 24px;
+  right: -7%;
+  width: 56%;
+  max-width: 600px;
+  aspect-ratio: auto;
+  border-radius: 0;
+  background: none;
+  filter: none;
+  transform: none;
+  opacity: .68;
+}
+.hero-accent svg { display: block; width: 100%; overflow: visible; }
+.hero-accent span {
+  display: block;
+  text-align: right;
+  padding-right: 18%;
+  color: var(--sage);
+  font: 10px "IBM Plex Mono", monospace;
+  letter-spacing: .16em;
+}
+.hero-metrics { gap: 0; border-block: 1px solid var(--line); }
+.metric-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 18px clamp(10px, 1.6vw, 22px);
+  background: transparent;
+  border: 0;
+  border-inline-start: 1px solid var(--line);
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.metric-value { font-size: clamp(22px, 2.55vw, 39px); font-weight: 600; }
+.btn { border-radius: 5px; text-align: center; }
+.btn-primary { color: var(--jungle); background: var(--mango); box-shadow: none; }
+.btn-primary:hover { background: #ffab54; }
+.btn-secondary { background: transparent; border-color: var(--line-strong); }
+a:focus-visible, button:focus-visible { outline: 2px solid currentColor; outline-offset: -3px; }
+
+.section { margin-top: 0; padding-block: clamp(52px, 9vw, 120px); border-top: 1px solid var(--line); }
+.section-main { min-width: 0; }
+.section-header h2, .cta-box h3 {
+  font-family: "Suisse Intl", "Manrope", sans-serif;
+  font-weight: 400;
+  line-height: .98;
+  letter-spacing: -.055em;
+  text-transform: none;
+}
+.section-header h2 { font-size: clamp(40px, 7vw, 103px); }
+.section-header p { max-width: 72ch; }
+.section:nth-of-type(3), #students { background: #e3e8d8; }
+.panel, .decision-card, .trust-card, .price-card, .cta-box, .student-case, .mid-cta {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+.panel::before, .decision-card::before, .trust-card::before, .price-card::before, .cta-box::before { display: none; }
+.decision-card:first-child { background: #f4e7d7; }
+.decision-card:last-child, .price-card--featured { background: #e1e9d8; }
+#program { background: radial-gradient(ellipse at 100% 0, #2e6b3f90, transparent 56%), var(--jungle); }
+.program-list { gap: 0; border-top: 1px solid var(--line); }
+.program-item { border: 0; border-bottom: 1px solid var(--line); background: none; border-radius: 0; box-shadow: none; backdrop-filter: none; }
+.program-toggle:hover, .program-item.is-open { background: #efe7d60d; }
+.program-icon { background: transparent; }
+.program-item.is-open .program-icon { background: var(--mango); --text: var(--jungle); }
+.price-card .price-name { color: var(--jungle); }
+.footer { padding-block: 28px; }
+.fade-in { opacity: 1; transform: none; transition: none; }
+.program-wave {
+  display: block;
+  width: 100%;
+  height: clamp(34px, 6vw, 64px);
+  margin-bottom: 18px;
+}
+.program-wave path { vector-effect: non-scaling-stroke; }
+.program-wave__axis { stroke: var(--line-strong); }
+.program-wave__signal { stroke: var(--mango); stroke-width: 1.5; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .topbar, .hero .side-label, .hero .rule, .hero .eyebrow, .hero-title > *,
+  .hero-copy, .hero-actions, .hero-metrics {
+    animation: cascade-in .62s cubic-bezier(.2, .72, .25, 1) both;
+    animation-delay: var(--intro-delay, 0ms);
+  }
+  .topbar, .hero .side-label, .hero .rule, .hero .eyebrow { --intro-delay: 240ms; }
+  .hero-edition { --intro-delay: 320ms; }
+  .hero-copy { --intro-delay: 410ms; }
+  .hero-actions { --intro-delay: 500ms; }
+  .hero-metrics { --intro-delay: 590ms; }
+  .hero-accent { animation: intro-wave-in .8s ease-out .3s both; }
+  .topbar:focus-within, .hero-actions:focus-within { animation: none; }
+  .hero-accent svg { animation: signal-drift 9s ease-in-out infinite alternate; }
+  .section-reveal:not(.section-arrival) > :is(.kicker, h2, p) { opacity: 0; }
+  .section-reveal:not(.section-arrival) .program-wave__signal { clip-path: inset(0 100% 0 0); }
+  .section-arrival:not(.section-skipped) > :is(.kicker, h2, p) {
+    animation: cascade-in .52s cubic-bezier(.2, .72, .25, 1) both;
+    animation-delay: calc(var(--section-lead, 180ms) + var(--cascade-step, 0ms));
+  }
+  .section-arrival > h2 { --cascade-step: 95ms; }
+  .section-arrival > p { --cascade-step: 190ms; }
+  #program .section-arrival { --section-lead: 620ms; }
+  .section-arrival:not(.section-skipped) .program-wave__signal {
+    animation: draw-signal .68s ease-in-out both;
+  }
+}
+@keyframes cascade-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes draw-signal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0); }
+}
+@keyframes intro-wave-in {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0); }
+}
+@keyframes signal-drift {
+  from { transform: translateY(-4px) scaleY(.9); }
+  to { transform: translateY(8px) scaleY(1.1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .btn { transition: none; }
+}
+@media (max-width: 1120px) {
+  .hero, .section { grid-template-columns: minmax(0, 1fr); }
+  .side-label { display: none; }
+  .hero-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .metric-card:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+}
+@media (min-width: 761px) and (max-width: 1120px) {
+  .pricing-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .topbar { gap: 18px; }
+  .hero-title { font-size: clamp(68px, 16vw, 115px); }
+  .hero-accent { width: 75%; right: -17%; top: 44px; opacity: .28; }
+  .hero-accent span { display: none; }
+  .program-toggle { grid-template-columns: minmax(48px, auto) minmax(0, 1fr) auto; gap: 10px; padding-inline: 8px; }
+  .program-title { font-size: clamp(17px, 4.9vw, 24px); overflow-wrap: anywhere; }
+  .program-icon { width: 32px; height: 32px; }
+}
+
+  </style>
 </head>
 <body>
   <main class="page-shell">
-    <header class="topbar fade-in">
-      <span>Flow Lab | Music School</span>
-      <span>Авторский курс Андрея PAYSAGE</span>
+    <header class="topbar">
+      <a class="wordmark" href="#top" aria-label="Flow Lab"><i>flow</i>lab<sup>®</sup></a>
+      <nav class="site-nav" aria-label="Навигация по курсу">
+        <a href="#program">Программа</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="#students">Треки учеников</a>
+      </nav>
     </header>
 
     <section class="hero fade-in" id="top">
@@ -1901,17 +2122,30 @@
         Flow Lab<br>
         Production<br>
         Андрей Paysage<br>
-        Старт скоро
+        Старт: середина декабря
       </div>
 
       <div class="hero-main">
         <div class="rule"></div>
         <div class="eyebrow">Авторский курс Андрея Paysage</div>
-        <div class="hero-accent" aria-hidden="true"></div>
-        <h1 class="hero-title">
-          <span class="soft">Flow</span>
-          <span class="accent">Lab</span>
-        </h1>
+        <div class="hero-accent" aria-hidden="true">
+          <svg viewBox="0 0 500 360" fill="none">
+            <defs>
+              <path id="signal" d="M-26 200 C70 200 71 70 152 70 S220 305 296 305 S376 139 448 139 S483 175 530 175"/>
+              <linearGradient id="signal-ink"><stop stop-color="#8fb08a" stop-opacity="0"/><stop offset=".43" stop-color="#8fb08a"/><stop offset=".79" stop-color="#f28c28"/><stop offset="1" stop-color="#f28c28" stop-opacity="0"/></linearGradient>
+            </defs>
+            <g stroke="url(#signal-ink)">
+              <use href="#signal" y="-50" opacity=".24"/><use href="#signal" y="-40" opacity=".32"/>
+              <use href="#signal" y="-30" opacity=".42"/><use href="#signal" y="-20" opacity=".55"/>
+              <use href="#signal" y="-10" opacity=".72"/><use href="#signal" stroke-width="2"/>
+              <use href="#signal" y="10" opacity=".68"/><use href="#signal" y="20" opacity=".5"/>
+              <use href="#signal" y="30" opacity=".38"/><use href="#signal" y="40" opacity=".27"/>
+              <use href="#signal" y="50" opacity=".18"/>
+            </g>
+          </svg>
+          <span>01 / SIGNAL STUDY</span>
+        </div>
+        <h1 class="hero-title" aria-label="Flow Lab Production"><span class="wordmark"><i>flow</i>lab<sup>®</sup></span><span class="hero-edition">Production</span></h1>
         <p class="hero-copy">
           <strong>Если ты застрял между сильным вкусом и слабыми демками,</strong>
           теряешься в плагинах, не доводишь идеи до релизного звучания —
@@ -1929,7 +2163,7 @@
         <div class="hero-metrics">
           <article class="metric-card">
             <div class="metric-label">Старт</div>
-            <div class="metric-value">Скоро<span>Новый поток Flow Lab Production откроется совсем скоро.</span></div>
+            <div class="metric-value">Середина декабря<span>Новый поток Flow Lab Production.</span></div>
           </article>
           <article class="metric-card">
             <div class="metric-label">Длительность</div>
@@ -2137,6 +2371,10 @@
       <div class="section-main">
         <div class="rule"></div>
         <div class="section-header">
+          <svg class="program-wave" viewBox="0 0 1000 64" preserveAspectRatio="none" fill="none" aria-hidden="true">
+            <path class="program-wave__axis" d="M0 32H1000"/>
+            <path class="program-wave__signal" d="M0 32H155 C185 32 193 28 218 28 S256 39 281 39 S322 20 348 20 S386 50 412 50 S452 8 478 8 S519 55 545 55 S585 13 611 13 S651 46 677 46 S717 23 743 23 S783 37 809 37 S849 32 875 32 H1000"/>
+          </svg>
           <div class="kicker">Авторская программа</div>
           <h2>Программа курса</h2>
           <p>
@@ -2549,22 +2787,26 @@
 
     <footer class="footer fade-in">
       <span>Flow Lab | Music School</span>
-      <span>Production course by Andrey Paysage · старт скоро</span>
+      <span>Production course by Andrey Paysage · старт в середине декабря</span>
     </footer>
   </main>
 
   <script>
-    const fadeInElements = document.querySelectorAll(".fade-in");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-        }
+    if ("IntersectionObserver" in window && matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, isIntersecting, boundingClientRect }) => {
+          if (!isIntersecting && boundingClientRect.bottom > 0) return;
+          target.classList.toggle("section-skipped", !isIntersecting);
+          target.classList.add("section-arrival");
+          observer.unobserve(target);
+        });
+      }, { rootMargin: "0px 0px -5% 0px" });
+      document.querySelectorAll(".section:not(#pricing) .section-header").forEach((heading) => {
+        if (heading.getBoundingClientRect().top < window.innerHeight) return;
+        heading.classList.add("section-reveal");
+        observer.observe(heading);
       });
-    }, { threshold: 0.12 });
-
-    fadeInElements.forEach((element) => observer.observe(element));
-    fadeInElements.forEach((element) => element.classList.add("is-visible"));
+    }
 
     const programItems = document.querySelectorAll(".program-item");
     programItems.forEach((item) => {
