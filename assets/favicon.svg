@@ -1,27 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
   <title>Flow Lab favicon</title>
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#d8ff3f"/>
-      <stop offset="44%" stop-color="#f6ff8a"/>
-      <stop offset="76%" stop-color="#ff95da"/>
-      <stop offset="100%" stop-color="#ff78c8"/>
-    </linearGradient>
-    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fffdf4" stop-opacity="0.54"/>
-      <stop offset="100%" stop-color="#fff7ef" stop-opacity="0.14"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="18" fill="url(#bg)"/>
-  <rect x="1.5" y="1.5" width="61" height="61" rx="16.5" fill="url(#glow)" opacity="0.36"/>
-  <text
-    x="32"
-    y="42"
-    text-anchor="middle"
-    fill="#1f1d26"
-    font-family="'Helvetica Neue', Arial, sans-serif"
-    font-size="28"
-    font-weight="700"
-    letter-spacing="0.8"
-  >FL</text>
+  <rect width="64" height="64" rx="14" fill="#0f2a1d"/>
+  <path fill="#f28c28" d="M12 15h19v7H19v7h10v7H19v13h-7z"/>
+  <path fill="#f8f3e8" d="M35 15h7v27h11v7H35z"/>
 </svg>
