@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Flow Lab</title>
+  <rect width="64" height="64" rx="14" fill="#2e4bff"/>
+  <path fill="#fff" d="M12 15h19v7H19v7h10v7H19v13h-7zM35 15h7v27h11v7H35z"/>
+</svg>
