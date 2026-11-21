@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+<meta name="course-application-endpoint" content="https://flowlab-course-applications.flowlab-team.workers.dev/">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flow Lab Production | Курс Андрея Paysage</title>
@@ -2421,6 +2422,22 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   .parallax-heading { translate: 0 var(--parallax-y, 0px); }
 }
 </style>
+<style>.course-dialog{box-sizing:border-box;width:min(640px,calc(100% - 28px));max-height:calc(100dvh - 28px);padding:36px;border:0;background:#f4f4f1;color:#111;overflow:auto;font-family:inherit;box-shadow:0 24px 100px #0005}
+.course-dialog::backdrop{background:#080b19b8;backdrop-filter:blur(5px)}
+.course-dialog h2{font-size:clamp(30px,5vw,44px);line-height:1.1;margin:12px 36px 16px 0;letter-spacing:-.035em}
+.course-dialog p{font-size:16px;line-height:1.5;color:#555;margin:0 0 24px}
+.course-close{position:absolute;right:16px;top:16px;width:44px;height:44px;border:0;background:transparent;color:#111;font-size:30px;cursor:pointer}
+.course-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.course-field{display:flex;flex-direction:column;gap:8px;font-size:16px;min-width:0}
+.course-field--wide{grid-column:1/-1}.course-field small{color:#666;font-size:14px}
+.course-dialog input:not([type=checkbox]),.course-dialog select,.course-dialog textarea{box-sizing:border-box;width:100%;min-height:48px;border:1px solid #aaa;background:#fff;color:#111;border-radius:0;padding:12px;font:inherit;font-size:16px}
+.course-dialog textarea{resize:vertical;min-height:90px}.course-dialog :focus-visible{outline:2px solid #2e4bff;outline-offset:3px}
+.course-consent{display:flex;align-items:flex-start;gap:10px;font-size:14px;line-height:1.5;margin:20px 0}.course-consent input{width:18px;height:18px;flex-shrink:0;accent-color:#2e4bff}
+.course-dialog .course-submit{width:100%;border:0;background:#2e4bff;color:#fff;min-height:52px;font:inherit;font-size:16px;cursor:pointer}.course-submit:disabled{opacity:.6;cursor:wait}
+.course-dialog .course-status{font-size:15px;margin:16px 0 0}.course-dialog .course-status:empty{display:none}.course-honey{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}.course-dialog a{color:#2e4bff}
+body:has(.course-dialog[open]){overflow:hidden}
+@media(max-width:520px){.course-dialog{padding:26px 20px}.course-fields{grid-template-columns:1fr}.course-field{grid-column:1}}
+</style>
 </head>
 <body>
   <main class="page-shell">
@@ -2440,6 +2457,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
         <h1 id="hero-title"><span>От идеи</span><br><span>до <em>трека</em></span></h1>
         <p class="minimal-description">Курс по музыкальному продакшену в Ableton Live с Андреем Paysage</p>
         <div class="minimal-actions">
+<button class="btn btn-primary" type="button" data-course-apply>Хочу на курс</button>
           <a class="btn btn-primary" href="#program">Программа <span aria-hidden="true">↗</span></a>
           <a class="btn btn-secondary" href="#pricing">Тарифы <span aria-hidden="true">↗</span></a>
         </div>
@@ -2988,7 +3006,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             </ul>
             <div class="price-result"><strong>Результат:</strong> у тебя есть готовый трек и более понятный путь как у артиста.</div>
             <div class="button-row">
-              <a class="btn btn-secondary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Узнать цену</a>
+              <button class="btn btn-secondary" type="button" data-course-apply="Base">Узнать цену</button>
             </div>
           </article>
 
@@ -3011,7 +3029,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             </ul>
             <div class="price-result"><strong>Результат:</strong> ты выходишь из потока с готовым треком, а также получаешь больше разборов и внешнего темпа.</div>
             <div class="button-row">
-              <a class="btn btn-primary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Узнать цену</a>
+              <button class="btn btn-primary" type="button" data-course-apply="Studio">Узнать цену</button>
             </div>
           </article>
 
@@ -3033,7 +3051,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             </ul>
             <div class="price-result"><strong>Результат:</strong> готовый трек, а также максимальная глубина сопровождения и шанс довести материал до выпуска под лейблом.</div>
             <div class="button-row">
-              <a class="btn btn-secondary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Узнать цену</a>
+              <button class="btn btn-secondary" type="button" data-course-apply="Mentor">Узнать цену</button>
             </div>
           </article>
         </div>
@@ -3046,7 +3064,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
             понять, какой тариф даст тебе лучший результат без лишней перегрузки.
           </p>
           <div class="button-row">
-            <a class="btn btn-primary" href="https://t.me/FlowLab_Academy" target="_blank" rel="noreferrer">Узнать больше</a>
+            <button class="btn btn-primary" type="button" data-course-apply>Оставить заявку</button>
             <a class="btn btn-secondary" href="#top">К началу страницы</a>
           </div>
         </div>
@@ -3260,5 +3278,88 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
       });
     });
   </script>
+<script>(() => {
+  // Configure a public receiver URL only. Bot credentials belong on the server.
+  const endpoint = document.querySelector('meta[name="course-application-endpoint"]')?.content || '';
+  const dialog = document.createElement('dialog');
+  dialog.className = 'course-dialog';
+  dialog.setAttribute('aria-labelledby', 'course-application-title');
+  dialog.innerHTML = `
+    <button type="button" class="course-close" aria-label="Закрыть заявку">×</button>
+    <h2 id="course-application-title">Твой следующий трек начинается здесь</h2>
+    <p>Оставь заявку на курс Андрея Paysage. Команда Flow Lab свяжется с тобой, расскажет о стоимости и поможет выбрать формат.</p>
+    <form>
+      <div class="course-fields">
+        <label class="course-field">Имя<input name="firstName" autocomplete="given-name" required maxlength="80"></label>
+        <label class="course-field">Фамилия<input name="lastName" autocomplete="family-name" required maxlength="80"></label>
+        <label class="course-field course-field--wide">Как с тобой связаться?<input name="contact" placeholder="@telegram, телефон или email" required minlength="3" maxlength="160" autocomplete="off"><small>Укажи контакт, по которому мы сможем ответить.</small></label>
+        <label class="course-field course-field--wide">Формат обучения<select name="plan"><option value="">Помогите выбрать</option><option>Base</option><option>Studio</option><option>Mentor</option></select></label>
+        <label class="course-field course-field--wide">Опыт в Ableton Live и музыке <small>Необязательно</small><textarea name="experience" maxlength="2000" placeholder="С нуля, собираю демки или уже выпускаю треки…"></textarea></label>
+        <label class="course-field course-field--wide">Что хочешь спросить? <small>Необязательно</small><textarea name="question" maxlength="2000" placeholder="Вопросы, цели или пожелания"></textarea></label>
+      </div>
+      <label class="course-honey" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+      <label class="course-consent"><input type="checkbox" name="consent" required><span>Разрешаю команде Flow Lab связаться со мной по поводу заявки и обработать указанные мной данные для ответа.</span></label>
+      <button class="course-submit" type="submit">Отправить заявку</button>
+      <p class="course-status" role="status" aria-live="polite"></p>
+    </form>`;
+  document.body.append(dialog);
+  const form = dialog.querySelector('form');
+  const status = dialog.querySelector('.course-status');
+  const submit = dialog.querySelector('[type="submit"]');
+  let opener;
+  let pending = false;
+  document.querySelectorAll('[data-course-apply]').forEach(button => {
+    button.addEventListener('click', () => {
+      opener = button;
+      form.elements.plan.value = button.dataset.courseApply || '';
+      dialog.showModal();
+    });
+  });
+  const close = () => { if (!pending) dialog.close(); };
+  dialog.querySelector('.course-close').addEventListener('click', close);
+  dialog.addEventListener('click', event => {
+    const rect = dialog.getBoundingClientRect();
+    if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) close();
+  });
+  dialog.addEventListener('cancel', event => { if (pending) event.preventDefault(); });
+  dialog.addEventListener('close', () => opener?.focus());
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    if (pending || !form.reportValidity()) return;
+    if (!endpoint) {
+      status.replaceChildren('Приём заявок через форму ещё подключается. Пока напиши нам в ');
+      const link = document.createElement('a');
+      link.href = 'https://t.me/FlowLab_Academy';
+      link.textContent = 'Telegram';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      status.append(link, '. Данные из формы не отправлены.');
+      return;
+    }
+    pending = true;
+    submit.disabled = true;
+    submit.textContent = 'Отправляем…';
+    status.textContent = '';
+    const data = Object.fromEntries(new FormData(form));
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({...data, source: 'flowlab-course', consent: true}),
+        signal: AbortSignal.timeout(20000)
+      });
+      const result = await response.json();
+      if (!response.ok || result.ok !== true) throw new Error('Delivery failed');
+      form.reset();
+      status.textContent = 'Заявка отправлена! Команда Flow Lab свяжется с тобой по указанному контакту.';
+    } catch {
+      status.textContent = 'Не удалось подтвердить отправку. Твои ответы остались в форме: попробуй ещё раз или напиши @FlowLab_Academy в Telegram.';
+    } finally {
+      pending = false;
+      submit.disabled = false;
+      submit.textContent = 'Отправить заявку';
+    }
+  });
+})();
+</script>
 </body>
 </html>
