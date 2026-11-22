@@ -2426,6 +2426,10 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .course-dialog::backdrop{background:#080b19b8;backdrop-filter:blur(5px)}
 .course-dialog h2{font-size:clamp(30px,5vw,44px);line-height:1.1;margin:12px 36px 16px 0;letter-spacing:-.035em}
 .course-dialog p{font-size:16px;line-height:1.5;color:#555;margin:0 0 24px}
+.course-direct{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;margin:0 0 26px;border:1px solid #2e4bff;background:#eef0ff}
+.course-direct span{font-size:15px;line-height:1.4;color:#17254f}
+.course-dialog .course-direct a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;background:#17254f;color:#fff;text-decoration:none;font-size:15px;white-space:nowrap}
+.course-dialog .course-direct a:hover{background:#2e4bff}
 .course-close{position:absolute;right:16px;top:16px;width:44px;height:44px;border:0;background:transparent;color:#111;font-size:30px;cursor:pointer}
 .course-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .course-field{display:flex;flex-direction:column;gap:8px;font-size:16px;min-width:0}
@@ -2436,7 +2440,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .course-dialog .course-submit{width:100%;border:0;background:#2e4bff;color:#fff;min-height:52px;font:inherit;font-size:16px;cursor:pointer}.course-submit:disabled{opacity:.6;cursor:wait}
 .course-dialog .course-status{font-size:15px;margin:16px 0 0}.course-dialog .course-status:empty{display:none}.course-honey{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}.course-dialog a{color:#2e4bff}
 body:has(.course-dialog[open]){overflow:hidden}
-@media(max-width:520px){.course-dialog{padding:26px 20px}.course-fields{grid-template-columns:1fr}.course-field{grid-column:1}}
+@media(max-width:520px){.course-dialog{padding:26px 20px}.course-direct{flex-direction:column;align-items:stretch;gap:12px}.course-dialog .course-direct a{white-space:normal;text-align:center}.course-fields{grid-template-columns:1fr}.course-field{grid-column:1}}
 </style>
 </head>
 <body>
@@ -3291,6 +3295,7 @@ body:has(.course-dialog[open]){overflow:hidden}
     <button type="button" class="course-close" aria-label="Закрыть заявку">×</button>
     <h2 id="course-application-title">Твой следующий трек начинается здесь</h2>
     <p>Оставь заявку на курс Андрея Paysage. Команда Flow Lab свяжется с тобой, расскажет о стоимости и поможет выбрать формат.</p>
+    <div class="course-direct"><span>Есть вопрос? Можно написать нам без анкеты.</span><a href="https://t.me/FlowLab_Academy" target="_blank" rel="noopener noreferrer">Написать в Telegram ↗</a></div>
     <form>
       <div class="course-fields">
         <label class="course-field">Имя<input name="firstName" autocomplete="given-name" required maxlength="80"></label>
